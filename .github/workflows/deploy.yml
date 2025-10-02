@@ -1,0 +1,43 @@
+name: Publish Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: 🚀 Deploy Website Every Commit
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get Latest Code
+      uses: actions/checkout@v4
+    
+    - name: 🔍 Debug SSH Key
+      run: |
+        echo "Checking SSH key format..."
+        echo "SSH key length: $(echo "${{ secrets.SSH_KEY }}" | wc -c)"
+        echo "SSH key starts with: $(echo "${{ secrets.SSH_KEY }}" | head -c 50)"
+        echo "SSH key ends with: $(echo "${{ secrets.SSH_KEY }}" | tail -c 50)"
+    
+    - name: 🔍 Test SSH Connection
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/test_key
+        chmod 600 ~/.ssh/test_key
+        ssh-keyscan -T 15 university.breachfix.com >> ~/.ssh/known_hosts
+        echo "Testing SSH connection..."
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/test_key -o ConnectTimeout=10 qovcjfmy@university.breachfix.com "echo 'SSH test successful'"
+    
+    - name: 📁 Create Theme Directory
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/test_key qovcjfmy@university.breachfix.com "mkdir -p /home1/qovcjfmy/public_html/website_d2f73679/wp-content/themes/breachfix-university-theme"
+    
+    - name: 📂 Sync Files
+      uses: SamKirkland/web-deploy@v1
+      with:
+        target-server: university.breachfix.com
+        remote-user: qovcjfmy
+        private-ssh-key: ${{ secrets.SSH_KEY }}
+        destination-path: /home1/qovcjfmy/public_html/website_d2f73679/wp-content/themes/breachfix-university-theme/
+        source-path: app/public/wp-content/themes/breachfix-university-theme/

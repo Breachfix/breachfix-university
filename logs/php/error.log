@@ -1,0 +1,4 @@
+[02-Oct-2025 01:28:49 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in /Users/uwimana/Local Sites/breachfix-university/app/public/wp-includes/functions.php on line 6334
+[02-Oct-2025 01:31:14 UTC] PHP Warning:  Attempt to read property "title" on null in /Users/uwimana/Local Sites/breachfix-university/app/public/wp-includes/class-wp-customize-widgets.php on line 926
+[02-Oct-2025 01:36:56 UTC] PHP Warning:  Attempt to read property "title" on null in /Users/uwimana/Local Sites/breachfix-university/app/public/wp-includes/class-wp-customize-widgets.php on line 926
+[02-Oct-2025 01:40:56 UTC] PHP Warning:  Attempt to read property "title" on null in /Users/uwimana/Local Sites/breachfix-university/app/public/wp-includes/class-wp-customize-widgets.php on line 926
