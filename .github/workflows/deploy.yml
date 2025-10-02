@@ -29,15 +29,15 @@ jobs:
         echo "Testing SSH connection..."
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/test_key -o ConnectTimeout=10 qovcjfmy@university.breachfix.com "echo 'SSH test successful'"
     
-    - name: 📁 Create Theme Directory
+    - name: 📁 Create WordPress Content Directory
       run: |
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/test_key qovcjfmy@university.breachfix.com "mkdir -p /home1/qovcjfmy/public_html/website_d2f73679/wp-content/themes/breachfix-university-theme"
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/test_key qovcjfmy@university.breachfix.com "mkdir -p /home1/qovcjfmy/public_html/website_d2f73679/wp-content"
     
-    - name: 📂 Sync Files
+    - name: 📂 Sync WordPress Content
       uses: SamKirkland/web-deploy@v1
       with:
         target-server: university.breachfix.com
         remote-user: qovcjfmy
         private-ssh-key: ${{ secrets.SSH_KEY }}
-        destination-path: /home1/qovcjfmy/public_html/website_d2f73679/wp-content/themes/breachfix-university-theme/
-        source-path: app/public/wp-content/themes/breachfix-university-theme/
+        destination-path: /home1/qovcjfmy/public_html/website_d2f73679/wp-content/
+        source-path: app/public/wp-content/
