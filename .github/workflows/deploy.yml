@@ -31,7 +31,7 @@ jobs:
     
     - name: 📁 Create WordPress Content Directory
       run: |
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/test_key qovcjfmy@university.breachfix.com "mkdir -p /home1/qovcjfmy/public_html/website_d2f73679/wp-content"
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/test_key qovcjfmy@university.breachfix.com "mkdir -p /home1/qovcjfmy/public_html/website_fcf72790/wp-content"
     
     - name: 📂 Sync WordPress Content
       uses: SamKirkland/web-deploy@v1
@@ -39,5 +39,5 @@ jobs:
         target-server: university.breachfix.com
         remote-user: qovcjfmy
         private-ssh-key: ${{ secrets.SSH_KEY }}
-        destination-path: /home1/qovcjfmy/public_html/website_d2f73679/wp-content/
+        destination-path: /home1/qovcjfmy/public_html/website_fcf72790/wp-content/
         source-path: app/public/wp-content/
