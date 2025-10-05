@@ -1,0 +1,47 @@
+name: Rollback Website
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: "Known-good commit SHA to deploy"
+        required: true
+
+jobs:
+  rollback:
+    name: 🔙 Redeploy known-good commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout requested commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.sha }}
+
+      # OPTIONAL: sanity — show short SHA being deployed
+      - run: git rev-parse --short HEAD
+
+      # --- Deploy the same way you normally do (SSH) ---
+      - name: Prepare SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -T 15 university.breachfix.com >> ~/.ssh/known_hosts
+
+      # If you want to keep using the SamKirkland action:
+      - name: 🚀 Sync rollback build
+        uses: SamKirkland/web-deploy@v1
+        with:
+          target-server: university.breachfix.com
+          remote-user: qovcjfmy
+          private-ssh-key: ${{ secrets.SSH_KEY }}
+          destination-path: /home1/qovcjfmy/public_html/website_d2f73679/
+          source-path: app/public/
+          # Add an exclude list (see section 3)
+          excludes: |
+            **/.git**
+            **/.github/**
+            **/node_modules/**
+            wp-config.php
+            wp-content/uploads/**
+            wp-content/cache/**
+            .htaccess
