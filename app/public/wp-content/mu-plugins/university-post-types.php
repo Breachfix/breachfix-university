@@ -22,7 +22,7 @@ function university_post_types() {
     // Program Post Type
     register_post_type('program', array(
       'show_in_rest' => true,
-      'supports' => array('title', 'editor', 'excerpt'),
+      'supports' => array('title', 'editor'),
       'rewrite' => array('slug' => 'programs'),
       'has_archive' => true,
       'public' => true,

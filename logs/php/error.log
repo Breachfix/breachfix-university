@@ -2,3 +2,5 @@
 [02-Oct-2025 01:31:14 UTC] PHP Warning:  Attempt to read property "title" on null in /Users/uwimana/Local Sites/breachfix-university/app/public/wp-includes/class-wp-customize-widgets.php on line 926
 [02-Oct-2025 01:36:56 UTC] PHP Warning:  Attempt to read property "title" on null in /Users/uwimana/Local Sites/breachfix-university/app/public/wp-includes/class-wp-customize-widgets.php on line 926
 [02-Oct-2025 01:40:56 UTC] PHP Warning:  Attempt to read property "title" on null in /Users/uwimana/Local Sites/breachfix-university/app/public/wp-includes/class-wp-customize-widgets.php on line 926
+[17-Oct-2025 01:59:25 UTC] PHP Parse error:  Unclosed '{' on line 5 in /Users/uwimana/Local Sites/breachfix-university/app/public/wp-content/themes/breachfix-university-theme/single-event.php on line 40
+[17-Oct-2025 01:59:30 UTC] PHP Parse error:  Unclosed '{' on line 5 in /Users/uwimana/Local Sites/breachfix-university/app/public/wp-content/themes/breachfix-university-theme/single-event.php on line 40

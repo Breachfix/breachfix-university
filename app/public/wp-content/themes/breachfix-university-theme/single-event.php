@@ -13,14 +13,24 @@
     <div class="container container--narrow page-section">
       <div class="metabox metabox--position-up metabox--with-home-link">  
         <p><a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link('event'); ?>">
-          <i class="fa fa-home" aria-hidden="true"></i> Events Home<?php echo get_the_title(get_option('page_for_posts')); 
-          ?></a> <span class="metabox__main"><?php the_title(); ?></span>
-        
+          <i class="fa fa-home" aria-hidden="true"></i> Events Home</a> <span class="metabox__main"><?php the_title(); ?></span>
+        </p>
       </div>
       <div class="generic-content">
         <?php the_content(); ?>
+        <?php
+        $relatedPrograms = get_field('related_programs');
+        if ($relatedPrograms) {
+          echo '<hr class="section-break">';
+          echo '<h4 class="headline headline--tiny">Related Programs</h4>';
+          echo '<ul class="min-list">';
+          foreach ($relatedPrograms as $program) { ?>
+            <li><a href="<?php echo get_the_permalink($program); ?>" class="nu gray"><?php echo get_the_title($program); ?></a></li>
+          <?php }
+          echo '</ul>';
+        }
+        ?>
       </div>
-    </div>
     </div>
    
     
